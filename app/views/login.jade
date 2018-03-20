@@ -1,0 +1,32 @@
+html
+    head
+        title= title
+        link(href='/css/main.css', rel='stylesheet')
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    body
+        h1= title
+        if isLoggedIn
+            h3 You are logged in.
+            form(name='logout', method='POST', action='logout')
+                div
+                    input(type='submit', value='Logout')
+        else
+            h3 กรุณา Login
+                form.form-horizontal(name='login', method="POST", action='login')
+                    div.form-group
+                        label.control-label.col-sm-2(for="email") Email:
+                        div.col-sm-10
+                            input.form-control(type="email", name="email", placeholder="Enter email")
+                    div.form-group
+                        label.control-label.col-sm-2(for="pwd") Password:
+                        div.col-sm-10
+                            input.form-control(type="password", name="pwd", placeholder="Enter password")
+                    div.form-group
+                        div.col-sm-offset-2.col-sm-10
+                            div.checkbox
+                                input(type='checkbox', name='remember', value='remember')
+                                label Remember Me
+
+                    div.form-group
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type="submit", value="Login") Login
