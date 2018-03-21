@@ -1,0 +1,31 @@
+html
+    head
+        title List Member
+        meta(charset="utf-8")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    body
+    div.container
+        h2 Member
+        table.table.table-hover
+            thead
+                tr
+                    th Firstname
+                    th Lastname
+                    th Email
+                    th Username
+                    th Edit
+                    th Delete
+            tbody
+                - each val in users
+                    tr
+                        td= val.firstname
+                        td= val.lastname
+                        td= val.email
+                        td= val.username
+                        td
+                            a.btn.btn-warning(href='edit/'+val.username, role="button") Edit
+                        td
+                            a.btn.btn-danger(href='delete/'+val.username, role="button") Delete
+

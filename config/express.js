@@ -3,10 +3,13 @@ var express = require('express'),
     compression = require('compression'),
     morgan = require('morgan'),
     validator = require('express-validator'),
-    session = require('express-session');
+    session = require('express-session'),
+    config = require('./config');
+
 module.exports = function () {
     var app = express(),
-        route = require('../app/routes/home.routes');
+        home_route = require('../app/routes/home.routes'),
+        user_route = require('../app/routes/user.routes');
 
     // set NODE_ENV = development
     // set NODE_ENV = production
@@ -18,7 +21,7 @@ module.exports = function () {
     }
 
     app.use(session({
-        secret: 'secret_key',
+        secret: config.sessionSecret,
         resave: false,
         saveUninitialized: true
     }));
@@ -29,7 +32,8 @@ module.exports = function () {
     app.set('views', './app/views');
     app.set('view engine', 'jade');
 
-    route(app);
+    home_route(app);
+    user_route(app);
 
     app.use(express.static('./public'));
 
